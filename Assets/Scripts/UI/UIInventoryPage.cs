@@ -23,7 +23,37 @@ namespace Inventory.UI
                     Instantiate(itemPrefab, Vector3.zero, Quaternion.identity);
                 item.transform.SetParent(contentPanel);
                 listOfUIItems.Add(item);  // storing current item in the list
+                item.OnItemClicked += HandleItemSelection;
+                item.OnItemBeginDrag += HandleBeginDrag;
+                item.OnItemDroppedOn += HandleSwap;
+                item.OnItemEndDrag += HandleEndDrag;
+                item.OnRightMouseBtnClick += HandleShowItemActions;
             }
+        }
+
+        private void HandleShowItemActions(UIInventoryItem obj)
+        {
+
+        }
+
+        private void HandleEndDrag(UIInventoryItem obj)
+        {
+            
+        }
+
+        private void HandleSwap(UIInventoryItem obj)
+        {
+            
+        }
+
+        private void HandleBeginDrag(UIInventoryItem obj)
+        {
+            
+        }
+
+        private void HandleItemSelection(UIInventoryItem obj)
+        {
+            Debug.Log(obj.name);
         }
 
         public void Show()

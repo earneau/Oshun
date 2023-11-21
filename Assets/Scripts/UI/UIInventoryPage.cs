@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace Inventory.UI
 {
@@ -13,7 +14,22 @@ namespace Inventory.UI
         [SerializeField]
         private RectTransform contentPanel;
 
+        [SerializeField]
+        private UIInventoryDescription itemDescription; 
+
         List<UIInventoryItem> listOfUIItems = new List<UIInventoryItem>();      // used to store our items in the inventory
+
+        // test variables
+        public Sprite image;
+        public int quantity;
+        public string title, description;
+
+        private void Awake()
+        {
+            Hide();
+            itemDescription.ResetDescription();
+        }
+
 
         public void Initialize(int inventorysize)       // initializes the inventory of size inventorysize
         {
@@ -53,12 +69,15 @@ namespace Inventory.UI
 
         private void HandleItemSelection(UIInventoryItem obj)
         {
-            Debug.Log(obj.name);
+            itemDescription.SetDescription(image, title, description);
+            listOfUIItems[0].Select();
         }
 
         public void Show()
         {
             gameObject.SetActive(true);     // if the object is in the inventory, show it
+            itemDescription.ResetDescription();
+            listOfUIItems[0].SetData(image, quantity);
         }
 
         public void Hide()
